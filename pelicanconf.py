@@ -31,4 +31,4 @@ DEFAULT_PAGINATION = 5
 #RELATIVE_URLS = True
 
 # Theme
-THEME = "/home/Prateek/pelican-themes/mnmlist"
+THEME = "/home/Prateek/pelican-themes/brownstone"
