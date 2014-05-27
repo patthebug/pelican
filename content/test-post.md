@@ -1,5 +1,5 @@
 Title: My super title
-Date: 05/27/2014
+Date: 05/27/2014 10:20
 Category: Python
 Tags: pelican, publishing
 Slug: my-super-post
