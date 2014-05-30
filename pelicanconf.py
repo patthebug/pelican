@@ -32,3 +32,6 @@ DEFAULT_PAGINATION = 5
 
 # Theme
 THEME = "/home/Prateek/pelican-themes/brownstone"
+STATIC_PATHS = ['extra']
+EXTRA_PATH_METADATA = {
+'extra/CNAME': {'path':'CNAME'}}
