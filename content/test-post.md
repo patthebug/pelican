@@ -11,7 +11,7 @@ I recently learned executing "Simple Linear Regression" using `multiprocessing` 
 
 $\beta  = \frac {\sum_{i=1}^{n} x_{i}y_{i} -  \frac {1}{n} \sum_{i=1}^{n} x_{i} \sum_{j=1}^{n} y_{j}} {\sum_{i=1}^{n} x_{i}^{2} - \frac {1}{n}(\sum_{i=1}^{n} x_{i})^2}$
 
-We will use the `multiprocessing` and `numpy` modules for this task.
+I will use the `multiprocessing` and `numpy` modules for this task.
 
 ```
 import numpy as np
@@ -30,5 +30,3 @@ def map_func(f):
 ```
 
 Later on, I will be using this function to read the file in parallel using 3 processes at the same time. 
-
-We 
