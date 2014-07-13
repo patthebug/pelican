@@ -8,7 +8,7 @@ SITEURL = ''
 
 TIMEZONE = 'America/Los_Angeles'
 PLUGIN_PATHS = ['/home/Prateek/pelican/pelican-plugins']
-PLUGINS = ["render_math"]
+PLUGINS = ['render_math']
 
 DEFAULT_LANG = u'en'
 
