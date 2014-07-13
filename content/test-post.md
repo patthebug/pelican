@@ -12,14 +12,16 @@ I recently learned executing "Simple Linear Regression" using `multiprocessing` 
 
 ![alt text](http://www.sciweavers.org/download/Tex2Img_1405242253.jpg "Logo Title Text 1")
 
+$\beta  = \frac {\sum_{i=1}^{n} x_{i}y_{i} -  \frac {1}{n} \sum_{i=1}^{n} x_{i} \sum_{j=1}^{n} y_{j}} {\sum_{i=1}^{n} x_{i}^{2} - \frac {1}{n}(\sum_{i=1}^{n} x_{i})^2}$
+
 We will use the `multiprocessing` and `numpy` modules for this task.
 
 ```
 import numpy as np
 import multiprocessing as mp
 ```
-$LaTeX$
-$LaTeX$
+$\LaTeX$
+$\LaTeX$
 
 The dataset that I will be using for this task is freely downloadable from [here](ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/nhanes/nhanes3/1A/adult.dat).  
 
