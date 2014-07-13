@@ -1,89 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
+        <title>My super title</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="http://patthebug.github.io/pelican/theme/css/main.css" type="text/css" />
+        <link href="http://patthebug.github.io/pelican/" type="application/atom+xml" rel="alternate" title="patthebug ATOM Feed" />
 
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  
-  <title>My super title</title>
-<link href="http://patthebug.github.io/pelican/theme/css/style.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="http://patthebug.github.io/pelican/" type="application/atom+xml" rel="alternate" title="patthebug ATOM Feed" />
-  
-  <!--[if IE]>
-  <style type="text/css"> 
-  .twoColFixRtHdr #mainContent { zoom: 1; }
-  </style>
-  <![endif]-->
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="http://patthebug.github.io/pelican/css/ie.css"/>
+                <script src="http://patthebug.github.io/pelican/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="http://patthebug.github.io/pelican/css/ie6.css"/><![endif]-->
 
 </head>
 
-<body>
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://patthebug.github.io/pelican/index.html">patthebug </a></h1>
+                <nav><ul>
+                <li><a href="http://patthebug.github.io/pelican/">Archives</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
 
-<div id="container">
+<section id="content" class="body">
+<article>
+        <header> <h1 class="entry-title"><a href="my-super-post.html"
+        rel="bookmark" title="Permalink to My super title">My super title</a></h1>  </header>
+        <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-05-27T10:20:00">
+                Tue 27 May 2014
+        </abbr>
 
-  <div id="header">
-  <h1><a href="http://patthebug.github.io/pelican">patthebug</h1>
-  
-  </div><!-- end #header -->
-  
-  <div id="topMenu">
-  
-    <ul>
-    	<li><a href="http://patthebug.github.io/pelican">Home</a></li>
-        <li>&ndash;</li>
-        <li><a href="http://patthebug.github.io/pelican/archives.html">Archives</a></li>
-        
-    </ul>
-  
-  </div><!-- end #topMenu -->
-
-  <div id="sidebar">
-	<h3>Pages</h3>
-	<ul>
-	</ul>
-    <h3>Categories</h3>
-    <ul>
-		 <li class="active"><a href="http://patthebug.github.io/pelican/category/python.html">Python</a></li>
-	</ul>
-	<li>
-		<h3>Blogroll</h3>
-		<ul>
-                    <li><a href="http://getpelican.com/">Pelican</a></li>
-                    <li><a href="http://python.org/">Python.org</a></li>
-                    <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                    <li><a href="#">You can modify those links in your config file</a></li>
-		</ul>
-	</li>
-        <li>
-                <h3>Social</h3>
-                <ul>
-                    <li><a href="http://patthebug.github.io/pelican/" rel="alternate">Flux Atom</a></li>
-                    <li><a href="#">You can add links in your config file</a></li>
-                    <li><a href="#">Another social link</a></li>
-                </ul>
-        </li><!-- /.social -->
-<li>
-        <h3>Tags</h3>
-        <ul>
-                <li><a href="http://patthebug.github.io/pelican/tag/pelican.html">pelican</a></li>
-                <li><a href="http://patthebug.github.io/pelican/tag/publishing.html">publishing</a></li>
-        </ul>
-</li>
-    
-  
-  </div><!-- end #sidebar -->
-
-  <div id="mainContent">
-  	
- 
-
-
-<div class="blogItem">
-    
-      <h2><a href="http://patthebug.github.io/pelican/my-super-post.html">My super title</a></h2>
-      <h3>Le Tue 27 May 2014</h3>
-      
-  <p>This is the content of my super blog post.</p>
+        <address class="vcard author">
+                By <a class="url fn" href="http://patthebug.github.io/pelican/author/prateek-singhal.html">Prateek Singhal</a>
+        </address>
+<p>In <a href="http://patthebug.github.io/pelican/category/python.html">Python</a>. </p>
+<p>tags: <a href="http://patthebug.github.io/pelican/tag/pelican.html">pelican</a><a href="http://patthebug.github.io/pelican/tag/publishing.html">publishing</a></p></p></footer><!-- /.post-info --><!-- /.post-info -->
+        <p>This is the content of my super blog post.</p>
 <h3>Simple Linear Regression using Python Multiprocessing library</h3>
 <p>I recently learned executing "Simple Linear Regression" using <code>multiprocessing</code> module in python. This module is used for parallel processing in python. The <code>β</code> for Simple Linear Regression is calculated using the following formula:</p>
 <p><img alt="alt text" src="http://www.sciweavers.org/download/Tex2Img_1405242253.jpg" title="Logo Title Text 1" /></p>
@@ -99,28 +58,47 @@
     <span class="n">age</span> <span class="o">=</span> <span class="kt">int</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">19</span><span class="p">])</span> <span class="err">#</span><span class="mi">18</span><span class="o">-</span><span class="mi">19</span>
     <span class="n">wtlbs</span> <span class="o">=</span> <span class="kt">int</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">1950</span><span class="o">:</span><span class="mi">1953</span><span class="p">])</span> <span class="err">#</span><span class="mi">1951</span><span class="o">-</span><span class="mi">1953</span> <span class="n">wt</span> <span class="n">in</span> <span class="n">lbs</span><span class="p">,</span> <span class="n">self</span> <span class="n">reported</span> <span class="o">!</span><span class="mi">888</span><span class="o">!</span> <span class="o">!</span><span class="mi">999</span><span class="o">!</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">age</span><span class="p">,</span> <span class="n">wtlbs</span><span class="p">]</span>
-</pre></div>	
-      
-      <h3 class="blogMeta">Par <a href="#">Prateek Singhal</a>, Catégorie : <a href="http://patthebug.github.io/pelican/category/python.html">Python</a></h3>
-	<h3 class="blogMeta">Tags : <span><a href="http://patthebug.github.io/pelican/tag/pelican.html">pelican</a> / </span>
-<span><a href="http://patthebug.github.io/pelican/tag/publishing.html">publishing</a> / </span>
-</h3>
-    
-    </div><!-- end #blogItem -->
-				
-				<!-- end #content -->
-  
-  </div><!-- end #mainContent -->
+</pre></div>
+        </div><!-- /.entry-content -->
 
-<div class="clearfloat"></div>
+</article>
+</section>
 
-  <div id="footer">
-  
-    <p><a href="http://css4free.com/" title="free CSS web site designs">Free CSS Gallery</a></p>
-    <p>Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>, which takes great advantages of <a href="http://python.org">python</a>.
-  </div><!-- end #footer -->
+        <aside id="sidebar">
+                <div class="widget">
+                        <h2>Categories</h2>
+                        <ul>
+                           <li class="active"><a href="http://patthebug.github.io/pelican/category/python.html">Python</a></li>
+                        </ul>
+                </div>
+                <div class="widget blogroll">
+                        <h2>Blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="widget social">
+                        <h2>Social</h2>
+                        <ul>
+                            <li><a href="http://patthebug.github.io/pelican/feeds/all.atom.xml" rel="alternate">atom feed</a></li>
 
-</div><!-- end #container -->
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </aside><!-- /#sidebar -->
+
+        <footer id="footer" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>, which takes great advantages of <a href="http://python.org">python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is «notmyidea-cms», a modified version of «notmyidea», the default theme.</p>
+        </footer><!-- /#footer -->
+
     <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
