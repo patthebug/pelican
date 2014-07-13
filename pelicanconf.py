@@ -7,7 +7,7 @@ SITENAME = u'patthebug'
 SITEURL = ''
 
 TIMEZONE = 'America/Los_Angeles'
-PLUGIN_PATHS = ['C:\cygwin64\home\Prateek\pelican\pelican-plugins']
+PLUGIN_PATHS = ['/home/Prateek/pelican/pelican-plugins']
 PLUGINS = ["render_math"]
 
 DEFAULT_LANG = u'en'
