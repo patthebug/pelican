@@ -2,7 +2,7 @@ Title: My super second
 Date: 2014/05/27 10:20
 Category: Python
 Tags: pelican, publishing
-Slug: my-super-post
+Slug: my-super-second
 Author: Prateek Singhal
 Summary: Short version for index and feeds
 

@@ -43,21 +43,52 @@
                 <h3>Simple Linear Regression using Python Multiprocessing library</h3>
 <p>I recently learned executing "Simple Linear Regression" using <code>multiprocessing</code> module in python. This module is used for parallel processing in python. The <code>β</code> for Simple Linear Regression is calculated using the following formula:</p>
 <p><img alt="alt text" src="http://www.sciweavers.org/download/Tex2Img_1405242253.jpg" title="Logo Title Text 1" /></p>
+<p>$\beta  = \frac {\sum_{i=1}^{n} x_{i}y_{i} -  \frac {1}{n} \sum_{i=1}^{n} x_{i} \sum_{j=1}^{n} y_{j}} {\sum_{i=1}^{n} x_{i}^{2} - \frac {1}{n}(\sum_{i=1}^{n} x_{i})^2}$</p>
 <p>We will use the <code>multiprocessing</code> and <code>numpy</code> modules for this task.</p>
 <div class="highlight"><pre><span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
 <span class="n">import</span> <span class="n">multiprocessing</span> <span class="n">as</span> <span class="n">mp</span>
 </pre></div>
 
 
-<p>$LaTeX$
-$LaTeX$</p>
+<p>$\LaTeX$
+$\LaTeX$</p>
 <p>The dataset that I will be using for this task is freely downloadable from <a href="ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/nhanes/nhanes3/1A/adult.dat">here</a>.  </p>
 <p>I will regress <code>age</code> against <code>weight</code>. The following function may be used to read the file in:</p>
 <div class="highlight"><pre><span class="n">def</span> <span class="n">map_func</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">:</span>
     <span class="n">age</span> <span class="o">=</span> <span class="kt">int</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">19</span><span class="p">])</span> <span class="err">#</span><span class="mi">18</span><span class="o">-</span><span class="mi">19</span>
     <span class="n">wtlbs</span> <span class="o">=</span> <span class="kt">int</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">1950</span><span class="o">:</span><span class="mi">1953</span><span class="p">])</span> <span class="err">#</span><span class="mi">1951</span><span class="o">-</span><span class="mi">1953</span> <span class="n">wt</span> <span class="n">in</span> <span class="n">lbs</span><span class="p">,</span> <span class="n">self</span> <span class="n">reported</span> <span class="o">!</span><span class="mi">888</span><span class="o">!</span> <span class="o">!</span><span class="mi">999</span><span class="o">!</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">age</span><span class="p">,</span> <span class="n">wtlbs</span><span class="p">]</span>
-</pre></div>
+</pre></div><script type= "text/javascript">
+    if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+        var mathjaxscript = document.createElement('script');
+        mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+        mathjaxscript.type = 'text/javascript';
+        mathjaxscript.src = 'https:' == document.location.protocol
+                ? 'https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+                : 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+        mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+            "MathJax.Hub.Config({" +
+            "    config: ['MMLorHTML.js']," +
+            "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+            "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+            "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+            "    displayAlign: 'center'," +
+            "    displayIndent: '0em'," +
+            "    showMathMenu: true," +
+            "    tex2jax: { " +
+            "        inlineMath: [ ['$','$'] ], " +
+            "        displayMath: [ ['$$','$$'] ]," +
+            "        processEscapes: true," +
+            "        preview: 'TeX'," +
+            "    }, " +
+            "    'HTML-CSS': { " +
+            "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+            "    } " +
+            "}); ";
+        (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+    }
+</script>
+
         </article></aside><!-- /#featured -->
 </ol><!-- /#posts-list -->
 </section><!-- /#content -->
