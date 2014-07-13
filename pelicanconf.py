@@ -7,6 +7,7 @@ SITENAME = u'patthebug'
 SITEURL = ''
 
 TIMEZONE = 'America/Los_Angeles'
+
 PLUGINS = ["render_math"]
 
 DEFAULT_LANG = u'en'
