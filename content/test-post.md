@@ -20,6 +20,7 @@ We will use the `multiprocessing` and `numpy` modules for this task.
 import numpy as np
 import multiprocessing as mp
 ```
+$LaTeX$
 
 The dataset that I will be using for this task is freely downloadable from [here](ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/nhanes/nhanes3/1A/adult.dat).  
 
