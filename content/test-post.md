@@ -1,8 +1,7 @@
-Title: My super title
+Title: Multiprocessing using python
 Date: 2014/05/27 10:20
 Category: Python
 Tags: pelican, publishing
-Slug: my-super-post
 Author: Prateek Singhal
 Summary: Short version for index and feeds
 
@@ -29,3 +28,7 @@ def map_func(f):
     wtlbs = int(f[1950:1953]) #1951-1953 wt in lbs, self reported !888! !999!
     return [age, wtlbs]
 ```
+
+Later on, I will be using this function to read the file in parallel using 3 processes at the same time. 
+
+We 
