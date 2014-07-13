@@ -6,7 +6,8 @@ AUTHOR = u'Prateek Singhal'
 SITENAME = u'patthebug'
 SITEURL = ''
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'America/Los_Angeles'
+PLUGINS = ["render_math"]
 
 DEFAULT_LANG = u'en'
 
@@ -16,10 +17,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS =  (('Pelican', 'http://getpelican.com/'),
-          ('Python.org', 'http://python.org/'),
-          ('Jinja2', 'http://jinja.pocoo.org/'),
-          ('You can modify those links in your config file', '#'),)
+LINKS =  (("Matt O'Brien", 'http://www.mattobrien.me/'),)
 
 # Social widget
 SOCIAL = (('You can add links in your config file', '#'),

@@ -9,6 +9,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;$LaTeX$&lt;/p&gt;
 &lt;p&gt;The dataset that I will be using for this task is freely downloadable from &lt;a href="ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/nhanes/nhanes3/1A/adult.dat"&gt;here&lt;/a&gt;.  &lt;/p&gt;
 &lt;p&gt;I will regress &lt;code&gt;age&lt;/code&gt; against &lt;code&gt;weight&lt;/code&gt;. The following function may be used to read the file in:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;map_func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
