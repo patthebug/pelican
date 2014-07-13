@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>patthebug</title><link href="http://patthebug.github.io/pelican/" rel="alternate"></link><link href="http://patthebug.github.io/pelican/feeds/all.atom.xml" rel="self"></link><id>http://patthebug.github.io/pelican/</id><updated>2014-05-27T10:20:00+02:00</updated><entry><title>My super title</title><link href="http://patthebug.github.io/pelican/my-super-post.html" rel="alternate"></link><updated>2014-05-27T10:20:00+02:00</updated><author><name>Prateek Singhal</name></author><id>tag:patthebug.github.io/pelican,2014-05-27:my-super-post.html</id><summary type="html">&lt;p&gt;This is the content of my super blog post.&lt;/p&gt;</summary><category term="pelican"></category><category term="publishing"></category></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>patthebug</title><link href="http://patthebug.github.io/pelican/" rel="alternate"></link><link href="http://patthebug.github.io/pelican/feeds/all.atom.xml" rel="self"></link><id>http://patthebug.github.io/pelican/</id><updated>2014-05-27T10:20:00+02:00</updated><entry><title>My super title</title><link href="http://patthebug.github.io/pelican/my-super-post.html" rel="alternate"></link><updated>2014-05-27T10:20:00+02:00</updated><author><name>Prateek Singhal</name></author><id>tag:patthebug.github.io/pelican,2014-05-27:my-super-post.html</id><summary type="html">&lt;p&gt;This is the content of my super blog post.&lt;/p&gt;
+&lt;p&gt;Title: My super title
+Date: 2014/05/27 10:20
+Category: Python
+Tags: pelican, publishing
+Slug: my-super-post
+Author: Prateek Singhal
+Summary: Short version for index and feeds&lt;/p&gt;
+&lt;p&gt;This is the content of my super blog post.&lt;/p&gt;</summary><category term="pelican"></category><category term="publishing"></category></entry></feed>
