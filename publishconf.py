@@ -14,7 +14,7 @@ from pelicanconf import *
 SITEURL = 'http://prateeksinghal.com/'
 RELATIVE_URLS = False
 SITELOGO = '/home/Prateek/pelican/USF22.png'
-LINKEDIN_URL = 'www.linkedin.com/pub/prateek-singhal/16/761/a4/'
+LINKEDIN_URL = 'https://www.linkedin.com/pub/prateek-singhal/16/761/a4'
 SITETAGLINE = 'randomness is beautiful'
 GITHUB_URL = 'https://github.com/patthebug'
 
