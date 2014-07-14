@@ -58,7 +58,65 @@
 </pre></div>
 
 
-<p>Later on, I will be using this function to read the file in parallel using 3 processes at the same time. </p><script type= "text/javascript">
+<p>I am going to use this function to read the file in parallel using 3 processes at the same time. I am using a quad-core machine which is why I have left 1 process untouched, for recovery purposes just in case I happen to write an infinite loop.</p>
+<p>For achieving this, I will use the <code>Pool</code> function and initiate 3 processes. After creating these processes, I will use the <code>map</code> function to distribute the reading job amongst the 3 processes. </p>
+<div class="highlight"><pre><span class="n">pool</span> <span class="o">=</span> <span class="n">mp</span><span class="p">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="err">&#39;</span><span class="n">adult</span><span class="p">.</span><span class="n">dat</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">pool</span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="n">map_func</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The data has some observations in which the weight was unknown or not disclosed. Such observations have weight values of 888 and 999 and the following code will get rid of these observations.</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="n">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">list</span><span class="p">(</span><span class="n">zip</span><span class="p">(</span><span class="o">*</span><span class="n">m</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span><span class="o">:</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="mi">888</span> <span class="n">or</span> <span class="n">item</span> <span class="o">==</span> <span class="mi">999</span><span class="o">:</span>
+            <span class="n">m</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="p">)</span>
+            <span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">zip</span><span class="p">(</span><span class="o">*</span><span class="n">m</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">zip</span><span class="p">(</span><span class="o">*</span><span class="n">m</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+
+<p>The above code now leaves us with <code>age</code> and <code>weight</code> vectors in variables <code>x</code> and <code>y</code> respectively. Let us first up calculate the coefficients for simple linear regression using the conventional method (finding the least squares fit). </p>
+<div class="highlight"><pre><span class="n">def</span> <span class="n">ols_lls</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">x</span><span class="p">))]).</span><span class="n">T</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span>
+
+<span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">ols_lls</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="n">print</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span>
+<span class="cp"># should print the values: (-0.0171020631488, 163.871290024)</span>
+</pre></div>
+
+
+<p>It may be a good idea now to verify these values with our own implementation of simple linear regression using the formula presented earlier.</p>
+<div class="highlight"><pre><span class="n">def</span> <span class="n">ols_sums</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">sum_x</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">sum_y</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">sum_xx</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">sum_xy</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum_xy</span> <span class="o">-</span> <span class="n">sum_x</span><span class="o">*</span><span class="n">sum_y</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">sum_xx</span> <span class="o">-</span> <span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">power</span><span class="p">(</span><span class="n">sum_x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span><span class="p">))</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum_y</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="n">m</span> <span class="o">*</span> <span class="p">(</span><span class="n">sum_x</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span>
+
+<span class="n">print</span> <span class="n">pool</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="n">ols_sums</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
+<span class="cp"># should print the values: (-0.017102063148779986, 163.87129002440847)</span>
+</pre></div>
+
+
+<p>Notice that I have used two different functions <code>map</code> and <code>apply</code> available within the <code>multiprocessing</code> module. More about these methods can be learnt <a href="https://docs.python.org/dev/library/multiprocessing.html">here</a>.</p>
+<p>Finally, one can easily notice that the values of parameters using the conventional <code>numpy</code> method and <code>multiprocessing</code> module are almost exactly the same.</p>
+<p>Now for finally plotting the results, I will use <code>matplotlib</code>.</p>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">matplotlib</span><span class="p">.</span><span class="n">pyplot</span> <span class="n">as</span> <span class="n">plt</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="sc">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="err">&#39;</span><span class="n">Original</span> <span class="n">data</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">m</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="sc">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="err">&#39;</span><span class="n">Fitted</span> <span class="n">line</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+
+<p>The complete code may be found <a href="https://github.com/patthebug/MultiProcessing/blob/master/SimpleLinearRegression.py">here</a>.</p><script type= "text/javascript">
     if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
         var mathjaxscript = document.createElement('script');
         mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
