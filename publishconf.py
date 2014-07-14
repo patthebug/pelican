@@ -11,9 +11,9 @@ sys.path.append(os.curdir)
 from pelicanconf import *
 
 # SITEURL = 'http://patthebug.github.io/pelican'
-SITEURL = 'http://prateeksinghal.com/'
+SITEURL = 'http://prateeksinghal.com'
 RELATIVE_URLS = False
-SITELOGO = 'https://github.com/patthebug/pelican/blob/master/USF22.png'
+SITELOGO = '/home/Prateek/pelican/USF22.png'
 LINKEDIN_URL = 'https://www.linkedin.com/pub/prateek-singhal/16/761/a4'
 SITETAGLINE = 'randomness is beautiful'
 GITHUB_URL = 'https://github.com/patthebug'
