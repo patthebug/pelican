@@ -17,6 +17,7 @@ FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 SITELOGO = '/home/Prateek/pelican/USF22.png'
+LINKEDIN_URL = 'www.linkedin.com/pub/prateek-singhal/16/761/a4/'
 
 # Blogroll
 LINKS =  (("Matt O'Brien", 'http://www.mattobrien.me/'),)
