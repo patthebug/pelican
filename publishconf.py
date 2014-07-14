@@ -15,6 +15,8 @@ SITEURL = 'http://prateeksinghal.com/'
 RELATIVE_URLS = False
 SITELOGO = '/home/Prateek/pelican/USF22.png'
 LINKEDIN_URL = 'www.linkedin.com/pub/prateek-singhal/16/761/a4/'
+SITETAGLINE = 'randomness is beautiful'
+GITHUB_URL = 'https://github.com/patthebug'
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
