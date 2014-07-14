@@ -23,8 +23,8 @@ GITHUB_URL = 'https://github.com/patthebug'
 LINKS =  (("Matt O'Brien", 'http://www.mattobrien.me/'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('https://www.linkedin.com/pub/prateek-singhal/16/761/a4', '#'),
+          ('https://github.com/patthebug', '#'),)
 
 DEFAULT_PAGINATION = 5
 
