@@ -13,6 +13,7 @@ from pelicanconf import *
 # SITEURL = 'http://patthebug.github.io/pelican'
 SITEURL = 'http://prateeksinghal.com/'
 RELATIVE_URLS = False
+SITELOGO = '/home/Prateek/pelican/USF22.png'
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
