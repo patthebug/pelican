@@ -30,7 +30,7 @@ DEFAULT_PAGINATION = 5
 #RELATIVE_URLS = True
 
 # Theme
-THEME = "/home/Prateek/pelican-themes/pelican-bootstrap3"
+THEME = "/home/Prateek/pelican-themes/waterspill"
 STATIC_PATHS = ['extra']
 EXTRA_PATH_METADATA = {
 'extra/CNAME': {'path':'CNAME'}}
