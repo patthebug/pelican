@@ -30,7 +30,7 @@ DEFAULT_PAGINATION = 5
 #RELATIVE_URLS = True
 
 # Theme
-THEME = "/home/Prateek/pelican-themes/notmyidea-cms"
+THEME = "/home/Prateek/pelican-themes/nmnlist"
 STATIC_PATHS = ['extra']
 EXTRA_PATH_METADATA = {
 'extra/CNAME': {'path':'CNAME'}}
