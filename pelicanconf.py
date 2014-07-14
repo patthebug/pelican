@@ -32,7 +32,7 @@ DEFAULT_PAGINATION = 5
 #RELATIVE_URLS = True
 
 # Theme
-THEME = "/home/Prateek/pelican-themes/crowsfoot"
+THEME = "/home/Prateek/pelican-themes/gum"
 STATIC_PATHS = ['extra']
 EXTRA_PATH_METADATA = {
 'extra/CNAME': {'path':'CNAME'}}
