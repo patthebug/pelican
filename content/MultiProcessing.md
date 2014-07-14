@@ -97,4 +97,4 @@ plt.show()
 
 The complete code may be found [here](https://github.com/patthebug/MultiProcessing/blob/master/SimpleLinearRegression.py).
 
-Notice that a performance improvement may not be visible in terms of using 3 processes (multiprocessing) against using just a simple process(least squares fit that we calculated earlier). This is because the data set in this case is not a large dataset. The same example can be repeated on a much larger dataset where the performance improvement will be clearly noticeable. 
+Notice that a performance improvement may not be visible in terms of using 3 processes (multiprocessing) against using just 1 process(least squares fit that we calculated earlier). This is because the data set in this case is not a large dataset. The same example can be repeated on a much larger dataset where the performance improvement will be clearly noticeable. 
