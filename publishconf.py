@@ -19,6 +19,7 @@ SITETAGLINE = 'randomness is beautiful'
 GITHUB_URL = 'https://github.com/patthebug'
 FACEBOOK_URL = 'https://www.facebook.com/prateek2686'
 SITEDESCR = 'Adventures of Data Science, learning something new, every day !'
+DISQUS_SITENAME = 'patthebug'
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'

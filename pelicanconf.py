@@ -18,6 +18,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 SITELOGO = '/home/Prateek/pelican/USF22.png'
 GITHUB_URL = 'https://github.com/patthebug'
+DISQUS_SITENAME = 'patthebug'
 
 # Blogroll
 LINKS =  (("Matt O'Brien", 'http://www.mattobrien.me/'),)
