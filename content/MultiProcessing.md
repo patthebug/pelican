@@ -3,7 +3,7 @@ Date: 2014/05/27 10:20
 Category: Python
 Tags: pelican, simplelinearregression, multiprocessing, python
 Author: Prateek Singhal
-Summary: Short version for index and feeds
+Summary: Simple Linear Regression using Python Multiprocessing library
 
 ### Simple Linear Regression using Python Multiprocessing library
 
