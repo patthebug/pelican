@@ -30,7 +30,7 @@ DEFAULT_PAGINATION = 5
 #RELATIVE_URLS = True
 
 # Theme
-THEME = "/home/Prateek/pelican-themes/franticworld"
+THEME = "/home/Prateek/pelican-themes/lannisport"
 STATIC_PATHS = ['extra']
 EXTRA_PATH_METADATA = {
 'extra/CNAME': {'path':'CNAME'}}
