@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background-image: url(../img/USF22.png);
+    background-image: url(../img/bg.png);
     border-top: .5rem solid #DC143C;
     color: #444;
 
@@ -37,12 +37,13 @@ h1, h2 {
 }
 
 #site-logo {
+    background-image: url(../img/USF22.png);
     padding: 1.5rem 0 1.35rem;
     margin-left: -3.75rem;
 }
 
 .content section {
-    background: url(/theme/img/USF22.png) no-repeat center bottom;
+    background: url(/theme/img/divider.png) no-repeat center bottom;
     padding-bottom: 3rem;
 }
 
@@ -105,7 +106,7 @@ h1, h2 {
 
 #sidebar {
     position: relative;
-    background-image: url(../img/USF22.png);
+    background-image: url(../img/debut_dark.png);
     padding: .5rem 2rem 1rem;
     margin-top: -.5rem;
 
