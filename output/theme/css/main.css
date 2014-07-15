@@ -37,6 +37,7 @@ h1, h2 {
 }
 
 #site-logo {
+    background: url(USF22.png);
     padding: 1.5rem 0 1.35rem;
     margin-left: -3.75rem;
 }
@@ -127,7 +128,6 @@ h1, h2 {
 }
 
 #navigation nav ul {
-    background-image: url(../img/USF22.png);
     margin: 0;
 }
 
