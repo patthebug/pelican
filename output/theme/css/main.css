@@ -42,7 +42,7 @@ h1, h2 {
 }
 
 .content section {
-    background: url(/theme/img/divider.png) no-repeat center bottom;
+    background: url(/theme/img/USF22.png) no-repeat center bottom;
     padding-bottom: 3rem;
 }
 
@@ -105,7 +105,7 @@ h1, h2 {
 
 #sidebar {
     position: relative;
-    background-image: url(../img/USF22.png);
+    background-image: url(../img/debut_dark.png);
     padding: .5rem 2rem 1rem;
     margin-top: -.5rem;
 
