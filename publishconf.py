@@ -18,7 +18,7 @@ LINKEDIN_URL = 'https://www.linkedin.com/pub/prateek-singhal/16/761/a4'
 SITETAGLINE = 'randomness is beautiful'
 GITHUB_URL = 'https://github.com/patthebug'
 FACEBOOK_URL = 'https://www.facebook.com/prateek2686'
-SITEDESCR = 'Adventures of Data Science, learning something new, every day !'
+SITEDESCR = 'Adventures in Data Science, learning something new, every day !'
 DISQUS_SITENAME = 'patthebug'
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
