@@ -31,7 +31,7 @@ This type of plot is pretty effective in showing outliers in the dataset. Outlie
 
 Depending on the choices made for X, Y axes variables and the variable for bubble size, one can learn different things about the underlying data. Because of this choice, the interpretation from this visualization is completely dependent on the viewer. Each combination of these variables can lead to a different interpretation of clusters or outliers. 
 
-![](https://github.com/patthebug/pelican/blob/master/content/images/BubblePlot.png?raw=true)
+![IMAGE](https://github.com/patthebug/pelican/blob/master/content/images/BubblePlot.png?raw=true)
 
 ## Scatter plot matrix ##
 
@@ -45,7 +45,7 @@ The values on the X axis are slightly hard to see. I could have made the height 
 
 The axes labels are cut abruptly on the right hand side of the plot. Increasing the height of the plot would have solved this problem as well but because these labels are displayed clearly on top of the plot, it's not much of a problem as the viewer can easily relate to the names of these variables (by referring to the labels on top). 
 
-![IMAGE](https://github.com/patthebug/pelican/blob/master/content/images/ScatterPlotMatrix.PNG)
+![IMAGE](https://github.com/patthebug/pelican/blob/master/content/images/ScatterPlotMatrix.PNG?raw=true)
 
 ## Parallel co-ordinates plot ##
 
@@ -57,7 +57,7 @@ One can also make use of the filtering that I have implemented (explained in the
 
 The lie factor for this plot is minimal as there is no jitter, the data is being displayed as is. The data-ink ratio is optimal as well because nothing unwanted is being displayed on the plot. Data density on the other hand is slightly high because of the number of data points displayed but one can filter on the wine quality type which will reduce the data density to an extent. 
 
-![IMAGE](https://github.com/patthebug/pelican/blob/master/content/images/ParallelPlot.PNG)
+![IMAGE](https://github.com/patthebug/pelican/blob/master/content/images/ParallelPlot.PNG?raw=true)
 
 ## Heat Map ##
 
@@ -69,7 +69,7 @@ The color scheme used for this visualization is diverging as it presents a nice 
 
 This visualization preserves a good data-ink ratio as nothing unwanted is being displayed. Data density and lie factor for this plot can be argued about slightly. This plot does not do a very good job at giving the user an idea about how many cases are being displayed which introduces some lie factor. For example - a wine quality type with a very narrow range may be displaying many cases at the same time without the viewer even realising the number of cases being displayed. 
 
-![IMAGE](https://github.com/patthebug/pelican/blob/master/content/images/HeatMap.PNG)
+![IMAGE](https://github.com/patthebug/pelican/blob/master/content/images/HeatMap.PNG?raw=true)
 
 ## Stacked Bar Plot ##
 
@@ -81,7 +81,7 @@ The range for X axis has been made the same both the plots when the viewer wants
 
 One can notice from the plot that there are not a lot of cases belonging to wine quality type 3 and 8, where as wine quality type 5 and 6 dominate as far as number of cases goes. The user can make use of the interactivity here and choose only the wine quality types that they want to visualize. Clicking on check boxes displays only the selected wine quality types. By default, all wine quality types are displayed when none of the check boxes is selected. This visualization is also good at displaying the distribution of cases across quality types and also identifying outliers.
 
-![IMAGE](https://github.com/patthebug/pelican/blob/master/content/images/StackedBarPlot.PNG)
+![IMAGE](https://github.com/patthebug/pelican/blob/master/content/images/StackedBarPlot.PNG?raw=true)
 
 ## Interactivity ##
 
