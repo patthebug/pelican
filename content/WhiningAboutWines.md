@@ -31,7 +31,7 @@ This type of plot is pretty effective in showing outliers in the dataset. Outlie
 
 Depending on the choices made for X, Y axes variables and the variable for bubble size, one can learn different things about the underlying data. Because of this choice, the interpretation from this visualization is completely dependent on the viewer. Each combination of these variables can lead to a different interpretation of clusters or outliers. 
 
-![IMAGE](https://github.com/patthebug/pelican/blob/master/content/images/BubblePlot.PNG?raw=true)
+![IMAGE](https://github.com/patthebug/pelican/blob/master/content/images/BubblePlot.png?raw=true)
 
 ## Scatter plot matrix ##
 
