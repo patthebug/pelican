@@ -147,6 +147,15 @@ h1, h2 {
     }
 }
 
+div.circletag {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: #E6E7ED;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+}
+
 article h2, article h3, article h4, article h5, article h6 {
     margin-top: 2rem;
     text-transform: uppercase;
