@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Multiprocessing using python / patthebug</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="shortcut icon" href="http://prateeksinghal.com/theme/favicon.ico" />
+        <link rel="apple-touch-icon" href="http://prateeksinghal.com/theme/apple-touch-icon-iphone.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://prateeksinghal.com/theme/apple-touch-icon-ipad.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://prateeksinghal.com/theme/apple-touch-icon-iphone4.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://prateeksinghal.com/theme/apple-touch-icon-ipad3.png" />
+
+        <link rel="stylesheet" href="http://prateeksinghal.com/theme/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://prateeksinghal.com/theme/css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="http://prateeksinghal.com/theme/css/colorbox.css">
+
+        <link rel="stylesheet" href="http://prateeksinghal.com/theme/css/main.css">
+
+        <script src="http://prateeksinghal.com/theme/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="container">
+            <div class="row">
+                <div class="span8">
+                    <header id="site-header">
+                        <h1>
+                            <a href="http://prateeksinghal.com">patthebug</a>
+                            <small>
+                                <span class="divider">/</span> randomness is beautiful
+                            </small>
+                        </h1>
+                        <p>
+                            Adventures in Data Science, learning something new, every day !
+                        </p>
+                    </header>
+
+                    <div class="content">
+<section>
+    <article>
+        <header>
+            <h2><a href="http://prateeksinghal.com/multiprocessing-using-python.html" rel="bookmark">Multiprocessing using python</a></h2>
+            <time datetime="2014-05-27T10:20:00">Tue 27 May 2014</time>
+        </header>
+
+    <h3>Simple Linear Regression using Python Multiprocessing library</h3>
+<p>I recently learned executing "Simple Linear Regression" using <code>multiprocessing</code> module in python. This module is used for parallel processing in python. The <code>β</code> for Simple Linear Regression is calculated using the following formula:</p>
+<p>$\beta  = \frac {\sum_{i=1}^{n} x_{i}y_{i} -  \frac {1}{n} \sum_{i=1}^{n} x_{i} \sum_{j=1}^{n} y_{j}} {\sum_{i=1}^{n} x_{i}^{2} - \frac {1}{n}(\sum_{i=1}^{n} x_{i})^2}$</p>
+<p>I will use the <code>multiprocessing</code> and <code>numpy</code> modules for this task.</p>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
+<span class="n">import</span> <span class="n">multiprocessing</span> <span class="n">as</span> <span class="n">mp</span>
+</pre></div>
+
+
+<p>The dataset that I will be using for this task is freely downloadable from <a href="ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/nhanes/nhanes3/1A/adult.dat">here</a>.  </p>
+<p>I will regress <code>age</code> against <code>weight</code>. The following function may be used to read the file in:</p>
+<div class="highlight"><pre><span class="n">def</span> <span class="n">map_func</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="kt">int</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">17</span><span class="o">:</span><span class="mi">19</span><span class="p">])</span> <span class="err">#</span><span class="mi">18</span><span class="o">-</span><span class="mi">19</span>
+    <span class="n">wtlbs</span> <span class="o">=</span> <span class="kt">int</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">1950</span><span class="o">:</span><span class="mi">1953</span><span class="p">])</span> <span class="err">#</span><span class="mi">1951</span><span class="o">-</span><span class="mi">1953</span> <span class="n">wt</span> <span class="n">in</span> <span class="n">lbs</span><span class="p">,</span> <span class="n">self</span> <span class="n">reported</span> <span class="o">!</span><span class="mi">888</span><span class="o">!</span> <span class="o">!</span><span class="mi">999</span><span class="o">!</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">age</span><span class="p">,</span> <span class="n">wtlbs</span><span class="p">]</span>
+</pre></div>
+
+
+<p>I am going to use this function to read the file in parallel using 3 processes at the same time. I am using a quad-core machine which is why I have left 1 process untouched, for recovery purposes just in case I happen to write an infinite loop.</p>
+<p>For achieving this, I will use the <code>Pool</code> function and initiate 3 processes. After creating these processes, I will use the <code>map</code> function to distribute the reading job amongst the 3 processes. </p>
+<div class="highlight"><pre><span class="n">pool</span> <span class="o">=</span> <span class="n">mp</span><span class="p">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="err">&#39;</span><span class="n">adult</span><span class="p">.</span><span class="n">dat</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">pool</span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="n">map_func</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The data has some observations in which the weight was unknown or not disclosed. Such observations have weight values of 888 and 999 and the following code will get rid of these observations.</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="n">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">list</span><span class="p">(</span><span class="n">zip</span><span class="p">(</span><span class="o">*</span><span class="n">m</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span><span class="o">:</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="mi">888</span> <span class="n">or</span> <span class="n">item</span> <span class="o">==</span> <span class="mi">999</span><span class="o">:</span>
+            <span class="n">m</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="p">)</span>
+            <span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">zip</span><span class="p">(</span><span class="o">*</span><span class="n">m</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">zip</span><span class="p">(</span><span class="o">*</span><span class="n">m</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+
+<p>The above code now leaves us with <code>age</code> and <code>weight</code> vectors in variables <code>x</code> and <code>y</code> respectively. Let us first up calculate the coefficients for simple linear regression using the conventional method (finding the least squares fit). </p>
+<div class="highlight"><pre><span class="n">def</span> <span class="n">ols_lls</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">x</span><span class="p">))]).</span><span class="n">T</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span>
+
+<span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">ols_lls</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="n">print</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span>
+<span class="cp"># should print the values: (-0.0171020631488, 163.871290024)</span>
+</pre></div>
+
+
+<p>It may be a good idea now to verify these values with our own implementation of simple linear regression using the formula presented earlier.</p>
+<div class="highlight"><pre><span class="n">def</span> <span class="n">ols_sums</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">sum_x</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">sum_y</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">sum_xx</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">sum_xy</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum_xy</span> <span class="o">-</span> <span class="n">sum_x</span><span class="o">*</span><span class="n">sum_y</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">sum_xx</span> <span class="o">-</span> <span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">power</span><span class="p">(</span><span class="n">sum_x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span><span class="p">))</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum_y</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="n">m</span> <span class="o">*</span> <span class="p">(</span><span class="n">sum_x</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span>
+
+<span class="n">print</span> <span class="n">pool</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="n">ols_sums</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
+<span class="cp"># should print the values: (-0.017102063148779986, 163.87129002440847)</span>
+</pre></div>
+
+
+<p>Notice that I have used two different functions <code>map</code> and <code>apply</code> available within the <code>multiprocessing</code> module. More about these methods can be learnt <a href="https://docs.python.org/dev/library/multiprocessing.html">here</a>.</p>
+<p>Finally, one can easily notice that the values of parameters using the conventional <code>numpy</code> method and <code>multiprocessing</code> module are almost exactly the same.</p>
+<p>Now for finally plotting the results, I will use <code>matplotlib</code>.</p>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">matplotlib</span><span class="p">.</span><span class="n">pyplot</span> <span class="n">as</span> <span class="n">plt</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="sc">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="err">&#39;</span><span class="n">Original</span> <span class="n">data</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">m</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="sc">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="err">&#39;</span><span class="n">Fitted</span> <span class="n">line</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+
+<p>The complete code may be found <a href="https://github.com/patthebug/MultiProcessing/blob/master/SimpleLinearRegression.py">here</a>.</p>
+<p>Notice that a performance improvement may not be visible in terms of using 3 processes (multiprocessing) against using just 1 process(least squares fit that we calculated earlier). This is because the data set in this case is not a large dataset. The same example can be repeated on a much larger dataset where the performance improvement will be clearly noticeable. </p><script type= "text/javascript">
+    if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+        var mathjaxscript = document.createElement('script');
+        mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+        mathjaxscript.type = 'text/javascript';
+        mathjaxscript.src = 'https:' == document.location.protocol
+                ? 'https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+                : 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+        mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+            "MathJax.Hub.Config({" +
+            "    config: ['MMLorHTML.js']," +
+            "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+            "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+            "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+            "    displayAlign: 'center'," +
+            "    displayIndent: '0em'," +
+            "    showMathMenu: true," +
+            "    tex2jax: { " +
+            "        inlineMath: [ ['$','$'] ], " +
+            "        displayMath: [ ['$$','$$'] ]," +
+            "        processEscapes: true," +
+            "        preview: 'TeX'," +
+            "    }, " +
+            "    'HTML-CSS': { " +
+            "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+            "    } " +
+            "}); ";
+        (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+    }
+</script>
+
+    <footer>
+        <p>Posted in: <a href="http://prateeksinghal.com/category/python.html">Python</a></p>
+        <p>Tagged as: <a href="http://prateeksinghal.com/tag/pelican.html">pelican</a> / <a href="http://prateeksinghal.com/tag/simplelinearregression.html">simplelinearregression</a> / <a href="http://prateeksinghal.com/tag/multiprocessing.html">multiprocessing</a> / <a href="http://prateeksinghal.com/tag/python.html">python</a></p>
+        <p>Wanna tell me what you think? <a href="http://prateeksinghal.com/">Get in touch.</a></p>
+    </footer>
+        </footer>
+    </article>
+</section>                    </div>
+
+                    <footer id="site-footer">
+                        <p>
+                            <a href="" target="_blank">
+                                
+                            </a> Prateek_Singhal /
+                            <a href="http://prateeksinghal.com/">Archives</a>
+                        </p>
+                        <p>
+                            Powered by
+                            <a href="https://github.com/getpelican/pelican" target="_blank">
+                                Pelican
+                            </a>
+                            /
+                            Source code on
+                            <a href="http://github.com/siovene/iovene.com" target="blank">
+                                GitHub
+                            </a>
+                            /
+                            Theme <code>Lannisport</code>, also on
+                            <a href="http://github.com/siovene/lannisport" target="_blank">
+                                GitHub
+                            </a>
+                        </p>
+                    </footer>
+                </div> <!-- header+content+footer span -->
+
+                <div class="span4">
+                    <aside id="sidebar">
+                        <div id="social-icons">
+                                <span class="social-icon">
+                                    <a href="https://github.com/patthebug" target="_blank" title="GitHub">
+                                        <img src="http://prateeksinghal.com/theme/img/GitHub.png" alt="GitHub"/>
+                                    </a>
+                                </span>
+                                <span class="social-icon">
+                                    <a href="https://www.linkedin.com/pub/prateek-singhal/16/761/a4" target="_blank" title="LinkedIn">
+                                        <img src="http://prateeksinghal.com/theme/img/LinkedIn.png" alt="LinkedIn"/>
+                                    </a>
+                                </span>
+                                <span class="social-icon">
+                                    <a href="https://www.facebook.com/prateek2686" target="_blank" title="Facebook">
+                                        <img src="http://prateeksinghal.com/theme/img/Facebook.png" alt="Facebook"/>
+                                    </a>
+                                </span>
+                        </div>
+
+                        <div id="site-logo">
+                            <a href="http://prateeksinghal.com">
+                                <img alt="patthebug" src="http://prateeksinghal.com/theme/img/USF22.png" />
+                            </a>
+                        </div>
+                        
+                        <div id="navigation">
+<nav>
+	<h2>Pages</h2>
+	<ul>
+		<li>
+			<ul>
+				<li>
+					<a href="http://prateeksinghal.com">Blog</a>
+				</li>
+
+				<li>
+					<a href="http://prateeksinghal.com">About Me</a>
+				</li>
+
+			</ul>
+		</li>
+	</ul>
+</nav>
+
+<nav>
+	<h2>Categories</h2>
+	<ul>
+		<li>
+			<ul>
+					<li>
+						<a href="http://prateeksinghal.com/category/data-visualization.html">Data Visualization</a>
+					</li>
+					<li>
+						<a href="http://prateeksinghal.com/category/python.html">Python</a>
+					</li>
+			</ul>
+		</li>
+	</ul>
+</nav>                        </div>
+                    </aside>
+                </div> <!-- logo+navigation span -->
+            </div> <!-- row -->
+        </div> <!-- /container -->
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="http://prateeksinghal.com/theme/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+        <script>$('body').popover || document.write('<script src="http://prateeksinghal.com/theme/js/vendor/bootstrap.min.js"><\/script>')</script>
+
+        <script src="http://prateeksinghal.com/theme/js/vendor/jquery.colorbox-min.js"></script>
+
+        <script src="http://prateeksinghal.com/theme/js/main.js"></script>
+
+        <script>
+            var _gaq=[['_setAccount',''],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    </body>
+</html>
